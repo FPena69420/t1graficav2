@@ -1,7 +1,5 @@
-# Hola cabros del feibuk. hoY me creo un repo.
+# Hola cabros del feibuk. hoY los quads cliKeo.
+
+quads se clickean con **RIGHT CLICK**
 
 _chomlie_
-
-BRrppp
-
-Maakdoon
