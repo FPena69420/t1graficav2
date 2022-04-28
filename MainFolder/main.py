@@ -25,9 +25,9 @@ def on_key(window, key, scancode, action, mods):
             glfw.set_window_should_close(window, True)
 
 # Dimensiones de la ventana de la aplicacion
-width = 800
+width = 320
 wHalf= width/2
-height = 720
+height = 1080
 hHalf= height/2
 
 def cursor_pos_callback(window, x, y):
@@ -112,7 +112,7 @@ if __name__ == '__main__':
 
     #Color de fondo------------------------------------------------------------------
 
-    glClearColor(0.4, 0.4, 1.0, 1.0)
+    glClearColor(0.25, 0.25, 0.25, 1.0)
 
     #fin de color de fondo-----------------------------------------------------------
 
