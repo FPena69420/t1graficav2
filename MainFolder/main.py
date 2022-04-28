@@ -6,14 +6,16 @@ import ShadersFolder.SimpleShaderCopypasta as SPC
 import ObjectsToBeDrawnFolder.objectsToBeDrawn as doodle
 import ObjectsToBeDrawnFolder.quadAngle as QA
 
-#eskere
 #Controls----------------------------------------------------------------------------
 
 class Controller:
     def __init__(self):
         self.leftClickOn = False
         self.rightClickOn= False
-        self.mousePos = (0.0, 0.0)
+        self.normalMousePos= (0.0, 0.0)
+
+        self.hoveringOnQuad= None
+        self.wShouldOpen= False
 
 controller= Controller()
 
@@ -22,12 +24,20 @@ def on_key(window, key, scancode, action, mods):
         if key == glfw.KEY_ESCAPE:
             glfw.set_window_should_close(window, True)
 
+# Dimensiones de la ventana de la aplicacion
+width = 800
+wHalf= width/2
+height = 720
+hHalf= height/2
+
 def cursor_pos_callback(window, x, y):
     global controller
-    controller.mousePos = (x, y)
+    controller.normalMousePos = ((x-wHalf)/wHalf, -(y-hHalf)/hHalf)
 
 def mouse_button_callback(window, button, action, mods):
     global controller
+
+    overQuad = controller.hoveringOnQuad
 
     """
     glfw.MOUSE_BUTTON_1: left click
@@ -42,7 +52,10 @@ def mouse_button_callback(window, button, action, mods):
 
         if (button == glfw.MOUSE_BUTTON_2):
             controller.rightClickOn = True
-            print("Mouse click - button 2")
+            print(f'Mouse click - button 2 in ({controller.normalMousePos[0]}, {controller.normalMousePos[1]})')
+
+            if overQuad!= None:
+                overQuad.clicked()
 
     elif (action == glfw.RELEASE):
         if (button == glfw.MOUSE_BUTTON_1):
@@ -53,8 +66,6 @@ def mouse_button_callback(window, button, action, mods):
 
 #fin controls------------------------------------------------------------------------
 
-
-
 if __name__ == '__main__':
     window = None
 
@@ -62,10 +73,6 @@ if __name__ == '__main__':
     if not glfw.init():
         glfw.set_window_should_close(window, True)
         raise Exception("glfw cannot be initialized.")
-
-    # Dimensiones de la ventana de la aplicacion
-    width = 800
-    height = 720
 
     # Se crea la ventana con el titulo asignado
     window = glfw.create_window(width, height, "DEEZNU", None, None)
@@ -94,11 +101,11 @@ if __name__ == '__main__':
 
     #Crear figuras-------------------------------------------------------------------
 
-    quad2 = QA.qAngle(-0.9, 0.9, -0.6, 0.6, [1.0, 1.0, 0.0])
+    quad2 = QA.qAngle(-0.9, 0.9, -0.6, 0.6, [1.0, 1.0, 0.0], "yellow")
     chasis2 = doodle.OTBD(pipeline, quad2.getVer(), quad2.getIn()).getGPUThingy()
 
 
-    quad1 = QA.qAngle(-0.4, 0.9, -0.1, 0.6, [1.0, 0.0, 0.0])
+    quad1 = QA.qAngle(-0.4, 0.9, -0.1, 0.6, [1.0, 0.0, 0.0], "red")
     chasis = doodle.OTBD(pipeline, quad1.getVer(), quad1.getIn()).getGPUThingy()
 
     #Fin crear figuras---------------------------------------------------------------
@@ -122,7 +129,12 @@ if __name__ == '__main__':
         pipeline.drawCall(chasis2)
         #fin de draw-----------------------------------------------------------------
 
-
+        if (quad1.hoveringOn(controller.normalMousePos)):
+            controller.hoveringOnQuad= quad1
+        elif (quad2.hoveringOn(controller.normalMousePos)):
+            controller.hoveringOnQuad= quad2
+        else:
+            controller.hoveringOnQuad= None
 
         #end code--------------------------------------------------------------------
 
