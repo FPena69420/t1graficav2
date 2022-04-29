@@ -25,9 +25,9 @@ def on_key(window, key, scancode, action, mods):
             glfw.set_window_should_close(window, True)
 
 # Dimensiones de la ventana de la aplicacion
-width = 320
+width = 900
 wHalf= width/2
-height = 1080
+height = 700
 hHalf= height/2
 
 def cursor_pos_callback(window, x, y):
@@ -52,7 +52,7 @@ def mouse_button_callback(window, button, action, mods):
 
         if (button == glfw.MOUSE_BUTTON_2):
             controller.rightClickOn = True
-            print(f'Mouse click - button 2 in ({controller.normalMousePos[0]}, {controller.normalMousePos[1]})')
+            print(f'Mouse click - button 2')
 
             if overQuad!= None:
                 overQuad.clicked()
@@ -105,8 +105,13 @@ if __name__ == '__main__':
     chasis2 = doodle.OTBD(pipeline, quad2.getVer(), quad2.getIn()).getGPUThingy()
 
 
-    quad1 = QA.qAngle(-0.4, 0.9, -0.1, 0.6, [1.0, 0.0, 0.0], "red")
+    quad1 = QA.qAngle(-0.4, 0.9, -0.1, 0.6, [1.0, 0.0, 0.0], "red", "windowCarrier")
     chasis = doodle.OTBD(pipeline, quad1.getVer(), quad1.getIn()).getGPUThingy()
+
+    myWindow= None
+    wgpu= None
+    closeButton= None
+    fullsButton= None
 
     #Fin crear figuras---------------------------------------------------------------
 
@@ -129,12 +134,43 @@ if __name__ == '__main__':
         pipeline.drawCall(chasis2)
         #fin de draw-----------------------------------------------------------------
 
-        if (quad1.hoveringOn(controller.normalMousePos)):
-            controller.hoveringOnQuad= quad1
-        elif (quad2.hoveringOn(controller.normalMousePos)):
-            controller.hoveringOnQuad= quad2
-        else:
-            controller.hoveringOnQuad= None
+        myWindow = quad1.getMyWindow()
+
+        if myWindow== None:
+
+            #pipeline.drawCall(chasis)
+            #pipeline.drawCall(chasis2)
+
+            if (quad1.hoveringOn(controller.normalMousePos)):
+                controller.hoveringOnQuad= quad1
+            elif (quad2.hoveringOn(controller.normalMousePos)):
+                controller.hoveringOnQuad= quad2
+            else:
+                controller.hoveringOnQuad= None
+
+        if myWindow!= None:
+            controller.hoveringOnQuad = None
+
+            wgpu= doodle.OTBD(pipeline, myWindow.getVer(), myWindow.getIn()).getGPUThingy()
+            pipeline.drawCall(wgpu)
+
+            closeButton = myWindow.getCloseButton()
+            fullsButton = myWindow.getFullsButton()
+
+            closegpu = doodle.OTBD(pipeline, closeButton.getVer(), closeButton.getIn()).getGPUThingy()
+            pipeline.drawCall(closegpu)
+            fullsgpu = doodle.OTBD(pipeline, fullsButton.getVer(), fullsButton.getIn()).getGPUThingy()
+            pipeline.drawCall(fullsgpu)
+
+            if (closeButton.hoveringOn(controller.normalMousePos)):
+                controller.hoveringOnQuad= closeButton
+            elif (fullsButton.hoveringOn(controller.normalMousePos)):
+                controller.hoveringOnQuad= fullsButton
+            else:
+                controller.hoveringOnQuad= None
+
+            myWindow = quad1.getMyWindow()
+
 
         #end code--------------------------------------------------------------------
 
