@@ -74,8 +74,8 @@ if __name__ == '__main__':
         glfw.set_window_should_close(window, True)
         raise Exception("glfw cannot be initialized.")
 
-    # Se crea la ventana con el titulo asignado
-    window = glfw.create_window(width, height, "DEEZNU", None, None)
+    # Se crea la ventana con el titulo asignadog
+    window = glfw.create_window(width, height, "DEEZNU OS - Versión de prueba 2.01", None, None)
 
     if not window:
         glfw.terminate()
@@ -101,7 +101,7 @@ if __name__ == '__main__':
 
     #Crear figuras-------------------------------------------------------------------
 
-    quad2 = QA.qAngle(-0.9, 0.9, -0.6, 0.6, [1.0, 1.0, 0.0], "yellow")
+    quad2 = QA.qAngle(-0.9, 0.9, -0.6, 0.6, [1.0, 1.0, 0.0], "yellow", "windowCarrier")
     chasis2 = doodle.OTBD(pipeline, quad2.getVer(), quad2.getIn()).getGPUThingy()
 
 
@@ -134,7 +134,7 @@ if __name__ == '__main__':
         pipeline.drawCall(chasis2)
         #fin de draw-----------------------------------------------------------------
 
-        myWindow = quad1.getMyWindow()
+        myWindow = quad1.getMyWindow() or quad2.getMyWindow()
 
         if myWindow== None:
 
