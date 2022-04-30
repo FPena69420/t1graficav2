@@ -15,7 +15,6 @@ class Controller:
         self.normalMousePos= (0.0, 0.0)
 
         self.hoveringOnQuad= None
-        self.wShouldOpen= False
 
 controller= Controller()
 
@@ -48,9 +47,9 @@ def mouse_button_callback(window, button, action, mods):
     if (action == glfw.PRESS or action == glfw.REPEAT):
         if (button == glfw.MOUSE_BUTTON_1):
             controller.leftClickOn = True
-            print("Mouse click - button 1")
+            print(f'Mouse click - button 1 in ({controller.normalMousePos[0]}, {controller.normalMousePos[1]})')
 
-        if (button == glfw.MOUSE_BUTTON_2):
+        elif (button == glfw.MOUSE_BUTTON_2):
             controller.rightClickOn = True
             print(f'Mouse click - button 2')
 
@@ -61,7 +60,7 @@ def mouse_button_callback(window, button, action, mods):
         if (button == glfw.MOUSE_BUTTON_1):
             controller.leftClickOn = False
 
-        if (button == glfw.MOUSE_BUTTON_2):
+        elif (button == glfw.MOUSE_BUTTON_2):
             controller.rightClickOn = False
 
 #fin controls------------------------------------------------------------------------
@@ -134,6 +133,7 @@ if __name__ == '__main__':
         pipeline.drawCall(chasis2)
         #fin de draw-----------------------------------------------------------------
 
+        #Check if one of the buttons opened a myWindow-----------------------------------------------------
         myWindow = quad1.getMyWindow() or quad2.getMyWindow()
 
         if myWindow== None:
@@ -141,6 +141,7 @@ if __name__ == '__main__':
             #pipeline.drawCall(chasis)
             #pipeline.drawCall(chasis2)
 
+            #Controls which objects can be clicked---------------------------------------------------------
             if (quad1.hoveringOn(controller.normalMousePos)):
                 controller.hoveringOnQuad= quad1
             elif (quad2.hoveringOn(controller.normalMousePos)):
@@ -149,6 +150,7 @@ if __name__ == '__main__':
                 controller.hoveringOnQuad= None
 
         if myWindow!= None:
+            #Because otherwise controller would be stuck on the button that opened the window--------------
             controller.hoveringOnQuad = None
 
             wgpu= doodle.OTBD(pipeline, myWindow.getVer(), myWindow.getIn()).getGPUThingy()
@@ -157,18 +159,28 @@ if __name__ == '__main__':
             closeButton = myWindow.getCloseButton()
             fullsButton = myWindow.getFullsButton()
 
+            #Drawing the buttons of the myWindow-----------------------------------------------------------
             closegpu = doodle.OTBD(pipeline, closeButton.getVer(), closeButton.getIn()).getGPUThingy()
             pipeline.drawCall(closegpu)
+
             fullsgpu = doodle.OTBD(pipeline, fullsButton.getVer(), fullsButton.getIn()).getGPUThingy()
             pipeline.drawCall(fullsgpu)
+            #end of drawing buttons------------------------------------------------------------------------
 
+            #Controls which objects can be clicked---------------------------------------------------------
             if (closeButton.hoveringOn(controller.normalMousePos)):
                 controller.hoveringOnQuad= closeButton
+
             elif (fullsButton.hoveringOn(controller.normalMousePos)):
                 controller.hoveringOnQuad= fullsButton
+
+            elif (myWindow.hoveringOn(controller.normalMousePos)):
+                controller.hoveringOnQuad= myWindow
+
             else:
                 controller.hoveringOnQuad= None
 
+            #Update the myWindow---------------------------------------------------------------------------
             myWindow = quad1.getMyWindow()
 
 

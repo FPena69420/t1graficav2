@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb7d0a5b-99f7-4dc9-8517-51211a56d330" name="Changes" comment="V2: cuadrado rojo abre una ventana">
+    <list default="true" id="cb7d0a5b-99f7-4dc9-8517-51211a56d330" name="Changes" comment="V2.1: cuadrados abren una ventana">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainFolder/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainFolder/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectsToBeDrawnFolder/myWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectsToBeDrawnFolder/myWindow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +57,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Virtual Environments/Grafica2022/Scripts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -103,6 +104,11 @@
       <updated>1651171332986</updated>
       <workItem from="1651171334223" duration="108000" />
       <workItem from="1651171514076" duration="716000" />
+      <workItem from="1651239543069" duration="2475000" />
+      <workItem from="1651249747899" duration="3516000" />
+      <workItem from="1651269854519" duration="5501000" />
+      <workItem from="1651278623080" duration="1446000" />
+      <workItem from="1651289777271" duration="397000" />
     </task>
     <task id="LOCAL-00001" summary="V0: chomlie">
       <created>1651172229472</created>
@@ -139,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651193871218</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="V2.1: cuadrados abren una ventana">
+      <created>1651197977051</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1651197977051</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,9 +174,10 @@
     <MESSAGE value="V1: quads are able to ble clicked" />
     <MESSAGE value="V1.5: merged main and V1 branches" />
     <MESSAGE value="V2: cuadrado rojo abre una ventana" />
-    <option name="LAST_COMMIT_MESSAGE" value="V2: cuadrado rojo abre una ventana" />
+    <MESSAGE value="V2.1: cuadrados abren una ventana" />
+    <option name="LAST_COMMIT_MESSAGE" value="V2.1: cuadrados abren una ventana" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/t1graficav2$main.coverage" NAME="main Coverage Results" MODIFIED="1651197923233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MainFolder" />
+    <SUITE FILE_PATH="coverage/t1graficav2$main.coverage" NAME="main Coverage Results" MODIFIED="1651290161212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MainFolder" />
   </component>
 </project>
